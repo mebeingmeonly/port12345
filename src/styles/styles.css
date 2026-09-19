@@ -556,18 +556,18 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   position: relative;
   will-change: transform;
   pointer-events: none;
 }
 
-/* Circular Eyes exactly matching attached reference proportions */
+/* Vertical capsule eyes */
 .hero-blob-eye {
-  width: 17px;
-  height: 17px;
+  width: 13px;
+  height: 24px;
   background: #035FD8;
-  border-radius: 50%;
+  border-radius: 9999px;
   transition: transform 0.08s ease;
   transform-origin: center center;
 }
@@ -586,12 +586,13 @@ button {
   }
 
   .hero-blob-eye {
-    width: 14px;
-    height: 14px;
+    width: 10.5px;
+    height: 19px;
+    border-radius: 9999px;
   }
 
   .hero-blob-eyes-group {
-    gap: 8px;
+    gap: 10px;
   }
 
   .hero-blob-anchor {
