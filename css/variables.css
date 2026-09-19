@@ -1,0 +1,73 @@
+/* Design Tokens & CSS Variables for Riya Gupta Portfolio - Sentira Light Mode Edition */
+
+@font-face {
+  font-family: 'Lt Remark';
+  src: url('../assets/fonts/lt_remark.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Warm Cream & Ethereal Forest Green Aura Palette */
+  --canvas-bg: #f3efe6;
+  --canvas-bg-translucent: rgba(243, 239, 230, 0.88);
+  --canvas-card: #ffffff;
+  --canvas-card-subtle: #eae5d9;
+  --canvas-border: rgba(26, 46, 34, 0.09);
+  --canvas-border-light: rgba(26, 46, 34, 0.05);
+  --canvas-border-strong: rgba(26, 46, 34, 0.18);
+
+  /* Deep Ink & Typography */
+  --ink-primary: #121c15;
+  --ink-secondary: #39473d;
+  --ink-muted: #647368;
+  --ink-light: #98a69d;
+
+  /* Forest & Sage Aura Accents */
+  --accent-primary: #1b4931;
+  --accent-forest: #1b4d35;
+  --accent-forest-dark: #123826;
+  --accent-sage: #2e6f4e;
+  --accent-sage-soft: #e2ede5;
+  --accent-sage-tint: rgba(46, 111, 78, 0.08);
+  --accent-gold: #c29d5b;
+
+  /* Glassmorphic & Elevated Surfaces */
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-shadow: 0 20px 40px -15px rgba(18, 28, 21, 0.06);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 8px 24px -6px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 48px -12px rgba(0, 0, 0, 0.08);
+  --shadow-pill: 0 2px 12px rgba(0, 0, 0, 0.05);
+
+  /* Typography: Heading is Lt Remark, Body & UI is Geist */
+  --font-heading: 'Lt Remark', Garamond, 'Times New Roman', serif;
+  --font-body: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family: var(--font-body);
+
+  /* Font Weights */
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Layout & Radii (Refined Small Corner Radius) */
+  --max-width: 1140px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 8px;
+  --radius-2xl: 8px;
+  --radius-pill: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}

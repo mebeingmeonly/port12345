@@ -1,0 +1,2058 @@
+/* ==========================================================================
+   Riya Gupta Portfolio - Sentira Light Mode Edition
+   Typography: Lt Remark (Headings & Brand) & Geist (Body & UI)
+   Aesthetic: Ethereal Light Luxury, Dreamy Pastel Sky Canvas, Concentric Brand Identity
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Base & Reset
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--canvas-bg);
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: var(--font-regular);
+  color: var(--ink-primary);
+  background-color: var(--canvas-bg);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--ink-primary);
+  letter-spacing: -0.015em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   Sentira Creative Loading Screen (Royal Blue Preloader)
+   Features Repeating Rolling Letters, Ambient Glow, Concentric Rings
+   -------------------------------------------------------------------------- */
+.sentira-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #035FD8;
+  background: #035FD8;
+  overflow: hidden;
+  user-select: none;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sentira-preloader.is-unveiling {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Preloader Container matching Hero Section geometry exactly */
+.preloader-container {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-content {
+  max-width: 860px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Repeating Rolling Letters in Preloader */
+.preloader-rolling-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3.8rem, 8.5vw, 6.75rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 4px 30px rgba(10, 35, 104, 0.4);
+  transition: text-shadow 0.4s ease;
+}
+
+.preloader-rolling-title.is-settled {
+  text-shadow: 0 4px 35px rgba(37, 107, 228, 0.6), 0 0 35px rgba(255, 255, 255, 0.3);
+}
+
+.rolling-title-wrapper {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.rolling-word {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.rolling-space {
+  display: inline-block;
+  width: 0.28em;
+}
+
+/* Individual Character Slot with 3D Depth Fade Mask */
+.rolling-char-slot {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: baseline;
+  height: 1.18em;
+  line-height: 1.18em;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.rolling-char-sizer {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  display: inline-block;
+  user-select: none;
+  line-height: 1.18em;
+}
+
+.rolling-char-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rolling-char-glyph {
+  width: 100%;
+  height: 1.18em;
+  line-height: 1.18em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #ffffff;
+}
+
+/* Preloader Meta Pill */
+.preloader-meta-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preloader-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.42rem 1.25rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: var(--font-medium);
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(10, 35, 104, 0.2);
+}
+
+.preloader-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #60aaff;
+  box-shadow: 0 0 0 0 rgba(96, 170, 255, 0.6);
+  animation: preloaderDotPulse 1.8s infinite;
+}
+
+@keyframes preloaderDotPulse {
+  0% { box-shadow: 0 0 0 0 rgba(96, 170, 255, 0.6); }
+  70% { box-shadow: 0 0 0 7px rgba(96, 170, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(96, 170, 255, 0); }
+}
+
+.preloader-status-copy {
+  letter-spacing: 0.02em;
+}
+
+.preloader-percent-badge {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 400;
+  padding: 0.12rem 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.04em;
+  margin-left: 0.35rem;
+}
+
+.preloader-footer-strip {
+  position: absolute;
+  bottom: 2.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  z-index: 5;
+}
+
+.preloader-dot {
+  color: #60aaff;
+}
+
+.section {
+  padding: 6.5rem 0;
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   Floating Capsule Navbar
+   Centered, rounded floating pill with frosted glass, delicate borders and shadow
+   -------------------------------------------------------------------------- */
+.floating-nav-wrapper {
+  position: fixed;
+  top: 1.25rem;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  padding: 0 1.5rem;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-app.intro-active .floating-nav-wrapper {
+  opacity: 0;
+  transform: translateY(-24px);
+  pointer-events: none;
+}
+
+.portfolio-app.intro-complete .floating-nav-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.site-header-capsule {
+  pointer-events: auto;
+  width: auto;
+  max-width: 440px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(3, 95, 216, 0.12);
+  border-radius: var(--radius-pill);
+  padding: 0.38rem 0.65rem 0.38rem 1.15rem;
+  box-shadow: 0 4px 16px rgba(2, 67, 156, 0.05);
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Scrolled state after crossing the hero section */
+.site-header-capsule.scrolled {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(3, 95, 216, 0.15);
+  box-shadow: 0 12px 30px -8px rgba(2, 67, 156, 0.08), 0 0 0 1px rgba(3, 95, 216, 0.04);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+}
+
+/* Navbar text: Deep vibrant navy over hero section for strong readability */
+.nav-link {
+  font-family: var(--font-body);
+  font-weight: var(--font-semibold);
+  font-size: 0.82rem;
+  color: #0a2368;
+  transition: color var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: #154ebf;
+}
+
+.site-header-capsule.scrolled .nav-link {
+  color: var(--ink-secondary);
+}
+
+.site-header-capsule.scrolled .nav-link:hover {
+  color: var(--accent-forest);
+}
+
+/* Brand Mark (No Name Text) */
+.brand-center-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a2368;
+  transition: color var(--transition-fast);
+}
+
+.brand-center-link:hover {
+  color: #154ebf;
+}
+
+.site-header-capsule.scrolled .brand-center-link {
+  color: var(--accent-forest);
+}
+
+.brand-mark-svg {
+  width: 22px;
+  height: 22px;
+  color: currentColor;
+  display: block;
+}
+
+/* Header Right Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.header-cta-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.38rem 0.95rem;
+  background: #0a2368;
+  color: #ffffff;
+  border: 1px solid #0a2368;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: var(--font-medium);
+  box-shadow: 0 2px 8px rgba(10, 35, 104, 0.15);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.header-cta-pill:hover {
+  background: #154ebf;
+  border-color: #154ebf;
+}
+
+.site-header-capsule.scrolled .header-cta-pill {
+  background: var(--accent-forest-dark);
+  color: #ffffff;
+  border-color: var(--accent-forest-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Sentira Hero Section: Ramp-Inspired Halftone Radial Arrow Burst
+   -------------------------------------------------------------------------- */
+.sentira-hero-section {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7.5rem 0 6rem 0;
+  overflow: hidden;
+  background-color: #035FD8;
+  background: #035FD8;
+}
+
+/* Blue Cloud Sky AVIF Background */
+.hero-sky-anime-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-sky-anime-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  transform: scale(1.02);
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sentira-hero-section.is-revealed .hero-sky-anime-img {
+  transform: scale(1);
+}
+
+/* Subtle luminous vignette/overlay that frames the central sky and ensures crisp text contrast */
+.hero-sky-anime-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(
+    ellipse at 50% 48%,
+    rgba(3, 95, 216, 0.08) 0%,
+    rgba(2, 67, 156, 0.22) 55%,
+    rgba(1, 40, 96, 0.48) 100%
+  );
+  pointer-events: none;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-content {
+  max-width: 860px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   INTERACTIVE WHITE SQUIRCLE BLOB MASCOT
+   Placed on top of the hero headline ("Riya Gupta")
+   ========================================================================== */
+.hero-blob-anchor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  z-index: 10;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-app.intro-active .hero-blob-anchor {
+  opacity: 0;
+  transform: translateY(16px) scale(0.92);
+  pointer-events: none;
+}
+
+.portfolio-app.hero-unveiling .hero-blob-anchor,
+.portfolio-app.intro-complete .hero-blob-anchor {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.06s;
+}
+
+.hero-blob-body {
+  width: 78px;
+  height: 78px;
+  background: #ffffff;
+  /* Circular blob body */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  /* Luminous depth shadow over blue anime sky */
+  box-shadow: 
+    0 16px 36px -6px rgba(2, 45, 110, 0.32),
+    0 4px 14px rgba(0, 0, 0, 0.06),
+    inset 0 -3px 6px rgba(3, 95, 216, 0.08),
+    inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  transition: box-shadow 0.3s ease, filter 0.3s ease;
+  will-change: transform;
+}
+
+.hero-blob-body:hover {
+  box-shadow: 
+    0 20px 42px -6px rgba(2, 45, 110, 0.42),
+    0 6px 18px rgba(0, 0, 0, 0.08),
+    inset 0 -3px 6px rgba(3, 95, 216, 0.08),
+    inset 0 2px 4px rgba(255, 255, 255, 0.95);
+}
+
+/* Playful squash & stretch bounce */
+.hero-blob-body.is-squashing {
+  animation: blobBounce 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes blobBounce {
+  0% { transform: scale(1, 1); }
+  25% { transform: scale(1.18, 0.82) translateY(4px); }
+  50% { transform: scale(0.88, 1.14) translateY(-8px); }
+  75% { transform: scale(1.05, 0.95) translateY(0); }
+  100% { transform: scale(1, 1); }
+}
+
+/* Eye Container tracking cursor */
+.hero-blob-eyes-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Circular Eyes exactly matching attached reference proportions */
+.hero-blob-eye {
+  width: 17px;
+  height: 17px;
+  background: #035FD8;
+  border-radius: 50%;
+  transition: transform 0.08s ease;
+  transform-origin: center center;
+}
+
+/* Natural eyelid blink */
+.hero-blob-eye.is-blinking {
+  transform: scaleY(0.08);
+  transition: transform 0.07s ease;
+}
+
+@media (max-width: 640px) {
+  .hero-blob-body {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+  }
+
+  .hero-blob-eye {
+    width: 14px;
+    height: 14px;
+  }
+
+  .hero-blob-eyes-group {
+    gap: 8px;
+  }
+
+  .hero-blob-anchor {
+    margin-bottom: 1.15rem;
+  }
+}
+
+/* Giant Headline in Lt Remark ("Riya Gupta" matching "You're Going to Figure it Out") */
+.sentira-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3.8rem, 8.5vw, 6.75rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 4px 30px rgba(10, 35, 104, 0.4);
+  transition: opacity 0.5s ease;
+}
+
+/* Value Prop Subtext in Luminous Off-White */
+.sentira-hero-subtext {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+  font-weight: var(--font-regular);
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.65;
+  max-width: 650px;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 14px rgba(10, 35, 104, 0.3);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-app.intro-active .sentira-hero-subtext {
+  opacity: 0;
+  transform: translateY(18px);
+  pointer-events: none;
+}
+
+.portfolio-app.hero-unveiling .sentira-hero-subtext,
+.portfolio-app.intro-complete .sentira-hero-subtext {
+  opacity: 0.92;
+  transform: translateY(0);
+  transition-delay: 0.08s;
+}
+
+/* Paired Action Pills */
+.sentira-hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-app.intro-active .sentira-hero-actions {
+  opacity: 0;
+  transform: translateY(22px);
+  pointer-events: none;
+}
+
+.portfolio-app.hero-unveiling .sentira-hero-actions,
+.portfolio-app.intro-complete .sentira-hero-actions {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.18s;
+}
+
+.sentira-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 2rem;
+  background: #ffffff;
+  color: var(--accent-forest-dark);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: var(--font-medium);
+  box-shadow: 0 4px 14px rgba(1, 40, 96, 0.15);
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.sentira-btn-primary:hover {
+  background: var(--accent-forest-dark);
+  color: #ffffff;
+  border-color: var(--accent-forest-dark);
+}
+
+.sentira-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.95rem;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: var(--font-medium);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 14px rgba(1, 40, 96, 0.12);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.sentira-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.sentira-btn-secondary .ph {
+  font-size: 1.15rem;
+}
+
+/* --------------------------------------------------------------------------
+   Sentira Trust Strip (Clean Transparent with Real Brand Logos)
+   -------------------------------------------------------------------------- */
+.sentira-trust-strip {
+  padding: 3.5rem 0 2rem 0;
+  border: none;
+  background: transparent;
+  text-align: center;
+}
+
+.trust-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-muted);
+  margin-bottom: 2rem;
+  font-weight: var(--font-medium);
+}
+
+.trust-logos-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.trust-logo-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-secondary);
+  opacity: 0.58;
+  transition: opacity var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.trust-brand-lockup {
+  gap: 0.5rem;
+}
+
+.trust-brand-wordmark {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: currentColor;
+  line-height: 1;
+}
+
+.trust-logo-item:hover {
+  opacity: 0.95;
+  color: var(--accent-forest-dark);
+  transform: scale(1.03);
+}
+
+/* --------------------------------------------------------------------------
+   Shared Section Headers (Sentira Serif Edition)
+   -------------------------------------------------------------------------- */
+.sentira-section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3.75rem auto;
+}
+
+.sentira-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: var(--font-semibold);
+  color: var(--accent-forest);
+  background: var(--accent-sage-soft);
+  border: 1px solid rgba(3, 95, 216, 0.14);
+  padding: 0.32rem 0.95rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 1rem;
+}
+
+.sentira-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.3rem, 3.8vw, 3.25rem);
+  line-height: 1.15;
+  color: var(--ink-primary);
+  margin-bottom: 1rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.sentira-section-header p {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--ink-secondary);
+  line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   About Section - Symmetrical Duo Grid
+   -------------------------------------------------------------------------- */
+.sentira-about-section {
+  padding: 6.5rem 0;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.about-duo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.about-portrait-card {
+  background: #ffffff;
+  border: 1px solid rgba(3, 95, 216, 0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 24px -8px rgba(2, 67, 156, 0.04);
+  position: relative;
+  display: flex;
+  min-height: 440px;
+}
+
+.about-portrait-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.about-story-card {
+  background: #ffffff;
+  border: 1px solid rgba(3, 95, 216, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 24px -8px rgba(2, 67, 156, 0.04);
+  padding: 2.75rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.about-story-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-story-scope {
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: #035FD8;
+  margin-bottom: 1.25rem;
+}
+
+.about-story-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.about-story-paragraph {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  color: var(--ink-secondary);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.about-story-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(3, 95, 216, 0.06);
+}
+
+.about-story-chip {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent-forest-dark);
+  background: rgba(3, 95, 216, 0.07);
+  border: 1px solid rgba(3, 95, 216, 0.12);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.about-story-chip i {
+  color: #035FD8;
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------------------------
+   Outcomes / Impact Section: Looping 3D Card Carousel (Sentira Aesthetic)
+   -------------------------------------------------------------------------- */
+.outcomes-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.5rem 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.outcomes-carousel-track {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.outcome-carousel-card {
+  position: absolute;
+  width: 100%;
+  max-width: 540px;
+  background: #ffffff;
+  border: 1px solid rgba(3, 95, 216, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease, box-shadow 0.65s ease;
+  user-select: none;
+  will-change: transform, opacity;
+  box-sizing: border-box;
+}
+
+/* Centered Active Card */
+.outcome-carousel-card.card-center {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  z-index: 10;
+  box-shadow: 0 24px 60px -12px rgba(2, 67, 156, 0.14), 0 0 0 1px rgba(3, 95, 216, 0.08);
+  cursor: default;
+  pointer-events: auto;
+}
+
+/* Peeked Left (Previous) Card */
+.outcome-carousel-card.card-prev {
+  transform: translateX(-56%) scale(0.88);
+  opacity: 0.35;
+  z-index: 4;
+  box-shadow: 0 8px 24px -6px rgba(2, 67, 156, 0.06);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.outcome-carousel-card.card-prev:hover {
+  opacity: 0.55;
+}
+
+/* Peeked Right (Next) Card */
+.outcome-carousel-card.card-next {
+  transform: translateX(56%) scale(0.88);
+  opacity: 0.35;
+  z-index: 4;
+  box-shadow: 0 8px 24px -6px rgba(2, 67, 156, 0.06);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.outcome-carousel-card.card-next:hover {
+  opacity: 0.55;
+}
+
+/* Hidden Stack Cards */
+.outcome-carousel-card.card-hidden {
+  transform: translateX(0) scale(0.78);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.outcome-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2rem;
+}
+
+.outcome-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #035FD8;
+}
+
+.outcome-top-tag {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--ink-primary);
+}
+
+.outcome-hero-stat {
+  font-family: var(--font-body);
+  font-size: clamp(3rem, 4.2vw, 4rem);
+  font-weight: 500;
+  color: var(--ink-primary);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.75rem;
+}
+
+.outcome-card-body {
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.outcome-title {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+.outcome-desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.outcome-metric-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.outcome-metric-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1.05rem;
+  background: #eaf2fd;
+  border: 1px solid #c2d9fb;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0a2368;
+  white-space: nowrap;
+}
+
+/* Controls */
+.outcomes-carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  z-index: 15;
+}
+
+.carousel-arrow-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(21, 78, 191, 0.12);
+  background: #ffffff;
+  color: #0a2368;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(10, 35, 104, 0.05);
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.carousel-arrow-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+  backdrop-filter: blur(8px);
+}
+
+.carousel-arrow-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.06);
+}
+
+.carousel-dots-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.carousel-dot {
+  width: 24px;
+  height: 5px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  transition: width 0.3s ease, background 0.3s ease;
+  padding: 0;
+}
+
+.carousel-dot.active {
+  width: 36px;
+  background: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   Section Background Color Palette: Clean White with Deep Royal Blue Aura Sections
+   -------------------------------------------------------------------------- */
+.sentira-about-section {
+  padding: 6.5rem 0;
+  background-color: #ffffff;
+}
+
+/* Outcomes: Royal Blue Aura section (matching hero gradient) */
+.impact-section {
+  padding: 5.5rem 0 5rem 0;
+  background: linear-gradient(135deg, #0a2368 0%, #154ebf 50%, #061748 100%);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.impact-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 15%, rgba(37, 107, 228, 0.35) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.impact-section .sentira-section-title {
+  color: #ffffff !important;
+}
+
+.impact-section p {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.expertise-sentira-section {
+  padding: 6.5rem 0 5.5rem 0;
+  background-color: #ffffff;
+}
+
+.cases-sentira-section {
+  padding: 6.5rem 0;
+  background-color: #ffffff;
+  border-top: 1px solid rgba(21, 78, 191, 0.06);
+}
+
+.teardown-sentira-section {
+  padding: 6.5rem 0;
+  background-color: #ffffff;
+}
+
+.services-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  background: rgba(21, 78, 191, 0.06);
+  border: 1px solid rgba(21, 78, 191, 0.12);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: var(--font-medium);
+  color: var(--accent-forest-dark);
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   EXPERTISE SECTION - 5-CARD BENTO GRID (MIDDLE FULL-HEIGHT)
+   ========================================================================== */
+
+.expertise-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  gap: 1.25rem;
+  width: 100%;
+  align-items: stretch;
+}
+
+.expertise-bento-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.65rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(3, 95, 216, 0.08);
+  box-shadow: 0 4px 20px -6px rgba(2, 67, 156, 0.04);
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Middle Card: Full Height of Two Rows, matching same styling */
+.expertise-card-tall {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.expertise-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.expertise-bento-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-sage-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.expertise-bento-icon {
+  font-size: 1.4rem;
+  color: var(--accent-forest);
+  display: block;
+}
+
+.expertise-bento-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.expertise-bento-title {
+  font-family: var(--font-body);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--accent-forest-dark);
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.expertise-bento-desc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-secondary);
+  line-height: 1.55;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .expertise-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .expertise-card-tall {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .expertise-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .expertise-card-tall {
+    grid-column: 1;
+  }
+  .expertise-bento-card {
+    padding: 1.5rem 1.35rem;
+    min-height: auto;
+  }
+}
+
+.expertise-action-btn:hover {
+  background: var(--accent-forest-dark);
+  color: #ffffff;
+  border-color: var(--accent-forest-dark);
+}
+
+.expertise-action-btn .ph {
+  font-size: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   Case Highlights Section: Magazine Editorial Showcase
+   -------------------------------------------------------------------------- */
+.cases-sentira-section {
+  padding: 8.5rem 0;
+  background-color: #ffffff;
+  border-top: 1px solid rgba(3, 95, 216, 0.08);
+  border-bottom: 1px solid rgba(3, 95, 216, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   Case Highlights Section: Minimal UI Editorial Showcase
+   -------------------------------------------------------------------------- */
+.cases-minimal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.case-card-minimal {
+  background: #ffffff;
+  border: 1px solid rgba(3, 95, 216, 0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 24px -8px rgba(2, 67, 156, 0.04);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.case-card-minimal:hover {
+  border-color: rgba(3, 95, 216, 0.18);
+  box-shadow: 0 12px 32px -8px rgba(2, 67, 156, 0.08);
+}
+
+.case-minimal-media-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #edf4fe;
+}
+
+.case-minimal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.case-minimal-category {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--accent-forest-dark);
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(3, 95, 216, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.case-minimal-body {
+  padding: 2rem 2.25rem 2.25rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.case-minimal-scope {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-weight: 600;
+  color: var(--accent-forest);
+  margin-bottom: 0.65rem;
+}
+
+.case-minimal-title {
+  font-family: var(--font-body);
+  font-size: 1.28rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink-primary);
+  margin: 0 0 0.75rem 0;
+  letter-spacing: -0.015em;
+}
+
+.case-minimal-desc {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--ink-secondary);
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+.case-minimal-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.case-minimal-pill {
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--accent-forest-dark);
+  background: rgba(3, 95, 216, 0.07);
+  border: 1px solid rgba(3, 95, 216, 0.12);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.case-minimal-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent-forest-dark);
+  text-decoration: none;
+  margin-top: auto;
+  align-self: flex-start;
+  padding-top: 0.5rem;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.case-minimal-cta:hover {
+  color: var(--accent-primary);
+}
+
+.case-minimal-cta i {
+  font-size: 1rem;
+  transition: transform var(--transition-fast);
+}
+
+.case-minimal-cta:hover i {
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 860px) {
+  .cases-minimal-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .case-minimal-body {
+    padding: 1.75rem 1.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Testimonials Section: Client Endorsements & Founder Trust
+   -------------------------------------------------------------------------- */
+.testimonials-sentira-section {
+  padding: 6.5rem 0;
+  background-color: #ffffff;
+  border-top: 1px solid rgba(3, 95, 216, 0.06);
+}
+
+/* ==========================================================================
+   TESTIMONIALS SECTION - SOLID CARDS WITH STARS ON TOP
+   ========================================================================== */
+.testimonials-solid-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.testimonial-card-solid {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  border: 1px solid rgba(3, 95, 216, 0.08);
+  box-shadow: 0 4px 20px -6px rgba(2, 67, 156, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 250px;
+}
+
+.testimonial-solid-stars {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #c29d5b;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-solid-quote {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: var(--ink-primary);
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+  letter-spacing: -0.01em;
+  flex-grow: 1;
+}
+
+.testimonial-solid-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(3, 95, 216, 0.06);
+}
+
+.testimonial-solid-name {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-primary);
+}
+
+.testimonial-solid-role {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+
+@media (max-width: 992px) {
+  .testimonials-solid-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .testimonials-solid-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .testimonial-card-solid {
+    padding: 1.75rem 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   GET IN TOUCH SECTION - ETHEREAL ROYAL BLUE SHOWCASE
+   ========================================================================== */
+.contact-section {
+  padding: 6.5rem 0 6rem 0;
+  background: linear-gradient(135deg, #0a2368 0%, #154ebf 50%, #061748 100%);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 20%, rgba(37, 107, 228, 0.35) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.contact-section .sentira-section-title {
+  color: #ffffff !important;
+}
+
+.contact-showcase-container {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.contact-channels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.contact-channel-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.65rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 190px;
+  text-decoration: none;
+  border: 1px solid rgba(21, 78, 191, 0.08);
+  box-shadow: 0 4px 20px -6px rgba(10, 35, 104, 0.06);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.contact-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.contact-channel-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-sage-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  color: var(--accent-forest);
+}
+
+.contact-channel-arrow {
+  color: var(--ink-muted);
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-channel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.contact-channel-title {
+  font-family: var(--font-body);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--accent-forest-dark);
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.contact-channel-desc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--ink-secondary);
+  line-height: 1.55;
+  margin: 0;
+  font-weight: 400;
+}
+
+@media (max-width: 992px) {
+  .contact-channels-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Sentira Light Mode Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: #ffffff;
+  color: var(--ink-muted);
+  padding: 2.75rem 0;
+  border-top: 1px solid var(--canvas-border);
+  font-size: 0.8125rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.footer-brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ink-primary);
+}
+
+.footer-logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+}
+
+.footer-dot {
+  color: var(--ink-light);
+}
+
+.footer-top-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-weight: var(--font-medium);
+  color: var(--ink-primary);
+  transition: color var(--transition-fast);
+}
+
+.footer-top-link:hover {
+  color: var(--accent-sage);
+}
+
+/* Accessibility Focus States */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--ink-primary);
+  outline-offset: 2px;
+}
+
+.ph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  vertical-align: -0.1em;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  .about-duo-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-portrait-card {
+    min-height: 380px;
+    max-height: 480px;
+  }
+
+  .about-story-card {
+    padding: 2rem 1.75rem;
+  }
+
+  .outcomes-carousel-track {
+    height: 440px;
+  }
+
+  .outcome-carousel-card {
+    max-width: 520px;
+    padding: 2.25rem 2rem;
+  }
+
+  .cases-duo-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .testimonials-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .expertise-body-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .expertise-row.active .expertise-row-body {
+    max-height: 1200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header-capsule {
+    max-width: 92%;
+    padding: 0.45rem 0.95rem;
+  }
+
+  .header-nav {
+    display: none;
+  }
+
+  .sentira-hero-title {
+    font-size: clamp(3rem, 10vw, 4.5rem);
+  }
+
+  .expertise-row-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.75rem 1rem;
+  }
+
+  .expertise-row-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .expertise-tag-pills {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .case-card-content {
+    padding: 1.85rem 1.5rem;
+  }
+
+  .outcomes-carousel-wrapper {
+    overflow: hidden;
+  }
+
+  .outcomes-carousel-track {
+    height: 410px;
+  }
+
+  .outcome-carousel-card {
+    width: 92%;
+    max-width: 92%;
+    padding: 2rem 1.6rem;
+  }
+
+  .outcome-carousel-card.card-prev {
+    transform: translateX(-102%) scale(0.85);
+    opacity: 0.18;
+  }
+
+  .outcome-carousel-card.card-next {
+    transform: translateX(102%) scale(0.85);
+    opacity: 0.18;
+  }
+
+  .testimonial-card {
+    padding: 1.85rem 1.5rem;
+  }
+
+  .form-row-duo {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form-box {
+    padding: 1.75rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Navigation & Drawer Enhancements
+   -------------------------------------------------------------------------- */
+.mobile-nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 1.35rem;
+  color: #0a2368;
+  cursor: pointer;
+  padding: 0.25rem;
+  margin-left: 0.5rem;
+  line-height: 1;
+  border-radius: var(--radius-sm);
+  align-items: center;
+  justify-content: center;
+}
+
+.site-header-capsule.scrolled .mobile-nav-toggle {
+  color: var(--accent-forest-dark);
+}
+
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 28, 21, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeInNav 0.25s ease;
+}
+
+.mobile-nav-panel {
+  width: 82%;
+  max-width: 320px;
+  height: 100%;
+  background: #fdfbf7;
+  border-left: 1px solid var(--canvas-border);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.12);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  animation: slideLeftNav 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--canvas-border);
+  margin-bottom: 1.5rem;
+}
+
+.mobile-nav-title {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  color: var(--accent-forest-dark);
+}
+
+.mobile-nav-close {
+  background: rgba(3, 95, 216, 0.06);
+  border: none;
+  font-size: 1.25rem;
+  color: var(--ink-primary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.mobile-nav-link {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: var(--font-medium);
+  color: var(--ink-primary);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(3, 95, 216, 0.05);
+  transition: color var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+  color: var(--accent-forest);
+}
+
+.mobile-nav-link.mobile-cta {
+  margin-top: 1.25rem;
+  padding: 0.85rem 1.25rem;
+  background: #0a2368;
+  color: #ffffff;
+  border-radius: var(--radius-pill);
+  text-align: center;
+  font-weight: var(--font-semibold);
+  border: none;
+  box-shadow: 0 4px 12px rgba(10, 35, 104, 0.15);
+}
+
+@keyframes fadeInNav {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideLeftNav {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-toggle {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .sentira-about-section,
+  .impact-section,
+  .expertise-sentira-section,
+  .cases-sentira-section,
+  .testimonials-sentira-section,
+  .contact-section {
+    padding: 4.5rem 0;
+  }
+
+  .sentira-hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sentira-btn-primary,
+  .sentira-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .trust-logos {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .about-portrait-frame {
+    max-width: 340px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.85rem;
+  }
+}
